@@ -26,9 +26,11 @@ prevesti = 75000
 prezapat = 120000
 prereloj = 120000
 prejean = 95000
-
-def recibo(cantprod,prod):
+producto = ""
+listaprod = ["", "", "","", "", "","", "", "","", "", "","", "", "","", "", "","", "", "","", "", "","", "", "","", "", "","", "", "","", "", "","", "", "","", "", "","", "", "","", "", "","", "", "","", "", "","", "", "","", "", "","", "", "","", "", "","", "", "","", "", "","", "", "","", "", "","", "", "","", "", "","", "", "","", "", "","", "", "","", "", "","", "", "","", "", "","", "", "","", "", "","", "", "" ]
+def recibo(cantprod,prod,prodid):
     if prod == vargorra:
+        producto = "gorra"
         if cantprod > 3:
             presindes = pregorra * cantprod
             preund = (pregorra * 0.85)
@@ -44,6 +46,7 @@ def recibo(cantprod,prod):
             pretot = pregorra * cantprod
             print("total: "+str(pretot))
     elif prod == varvesti:
+        producto = "vestido"
         if cantprod > 3:
             presindes = prevesti * cantprod
             preund = (prevesti * 0.85)
@@ -59,6 +62,7 @@ def recibo(cantprod,prod):
             pretot = prevesti * cantprod
             print("total: "+str(pretot))
     elif prod == varzapat:
+        producto = "zapatos"
         if cantprod > 3:
             presindes = prezapat * cantprod
             preund = (prezapat * 0.85)
@@ -74,6 +78,7 @@ def recibo(cantprod,prod):
             pretot = prezapat * cantprod
             print("total: "+str(pretot))
     elif prod == varreloj:
+        producto = "reloj"
         if cantprod > 3:
             presindes = prereloj * cantprod
             preund = (prereloj * 0.85)
@@ -89,6 +94,7 @@ def recibo(cantprod,prod):
             pretot = prereloj * cantprod
             print("total: "+str(pretot))
     elif prod == varjean:
+        producto = "jean"
         if cantprod > 3:
             presindes = prejean * cantprod
             preund = (prejean * 0.85)
@@ -99,6 +105,8 @@ def recibo(cantprod,prod):
             print("precio total: "+str(pretot))
             print("precio total sin descuento: "+str(presindes))
             print("ahorraste: "+str(ahorro))
+            print(prodid)
+            listaprod[prodid] = f"producto: {producto},   cantidad = {str(cantprod)} total = ${str(pretot)}\n"
         else:
             preund = prejean
             pretot = prejean * cantprod
@@ -107,8 +115,18 @@ def recibo(cantprod,prod):
         print("variable incorrecta, vuelva a ingresar los datos")
         cantprod = 0
         prod = 0
+        pretot = 0
+        producto = "NULL"
+
+    listaprod[prodid] = f"id factura: {prodid}      producto: {producto}        cantidad = {str(cantprod)}      total = ${str(pretot)}"
+    
+    
+
+
 lock = False
+i= 0
 while lock == False:
+    prodid = i
     print("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nelije el producto a comprar \n"+"1. gorra: $45.000\n2. vestidos: $75.000 \n 3. zapatos: $120.000\n4. reloj: $120.000 \n5. jean: $95.000")
     print("\n\nproducto:  \n")
     ch1 = int(input())
@@ -117,15 +135,22 @@ while lock == False:
     print("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n")
     persona1.info()
     print("\n")
-    recibo(ch2,ch1)
+    recibo(ch2,ch1,prodid)
     print("desea comprar otro producto? \t si: 1\tno: 0")
     lockb = int(input(""))
     if lockb == 1:
         lock = False
         print("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n")
+        i += 1
     elif lockb == 0:
         lock = True
+        print("tus compras fueron: ")
         print("Hasta luego!")
+        i = 0
+        for e in listaprod:
+            print(listaprod[i])
+            i += 1
+
     else:
         print("valor invalido, vuelva a ingresar al sistema.")
         lock = True
