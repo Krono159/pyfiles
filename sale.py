@@ -125,34 +125,43 @@ def recibo(cantprod,prod,prodid):
 
 lock = False
 i= 0
-while lock == False:
-    prodid = i
-    print("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nelije el producto a comprar \n"+"1. gorra: $45.000\n2. vestidos: $75.000 \n 3. zapatos: $120.000\n4. reloj: $120.000 \n5. jean: $95.000")
-    print("\n\nproducto:  \n")
-    ch1 = int(input())
-    print("\n\ncantidad: ")
-    ch2 = int(input())
-    print("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n")
-    persona1.info()
-    print("\n")
-    recibo(ch2,ch1,prodid)
-    print("desea comprar otro producto? \t si: 1\tno: 0")
-    lockb = int(input(""))
-    if lockb == 1:
-        lock = False
+error = ""
+try:
+    while lock == False:
+        prodid = i
+        print("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nelije el producto a comprar \n"+"1. gorra: $45.000\n2. vestidos: $75.000 \n 3. zapatos: $120.000\n4. reloj: $120.000 \n5. jean: $95.000")
+        print("\n\nproducto:  \n")
+        ch1 = int(input())
+        error = "error de entrada, se esperaba un valor INT"
+        print("\n\ncantidad: ")
+        ch2 = int(input())
+        error = "error de entrada, se esperaba un valor INT"
         print("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n")
-        i += 1
-    elif lockb == 0:
-        lock = True
-        print("tus compras fueron: ")
-        print("Hasta luego!")
-        i = 0
-        for e in listaprod:
-            print(listaprod[i])
+        persona1.info()
+        error = "error generando objeto persona"
+        print("\n")
+        recibo(ch2,ch1,prodid)
+        error = "ERROR EN RECIBO"
+        print("desea comprar otro producto? \t si: 1\tno: 0")
+        lockb = int(input(""))
+        if lockb == 1:
+            lock = False
+            print("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n")
             i += 1
+            error = "error generando bloqueo de loop"
+        elif lockb == 0:
+            lock = True
+            print("tus compras fueron: ")
+            print("Hasta luego!")
+            i = 0
+            error = "error generando desbloqueo de loop"
+            for e in listaprod:
+                print(listaprod[i])
+                i += 1
+                error = "error en impresion de recibo"
 
-    else:
-        print("valor invalido, vuelva a ingresar al sistema.")
-        lock = True
-
-
+        else:
+            error = "Error de sintaxis en input de la linea 146"
+            raise
+except:
+    print(f"ha ocurrido un error, error: {error}")
