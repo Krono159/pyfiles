@@ -4,8 +4,8 @@ try:
     user='root', password='',db='libros')
     try:
         with con.cursor() as cursor:
-            consulta = "INSERT INTO libros (isbn,titulo,anyo) VALUES(%s,%s,%s);"
-            cursor.execute(consulta,('9789875452114','La serpiente y el mar','2005'))
+            consulta = "INSERT INTO librowos (isbn,titulo,anyo,status) VALUES(%s,%s,%s,%s);"
+            cursor.execute(consulta,('9789875452114','La serpiente y el mar','2005','disponible'))
         con.commit()
     finally:
         con.close

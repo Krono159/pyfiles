@@ -9,11 +9,11 @@ try:
     user='root', password='',db='libros')
     try:
         with con.cursor() as cursor: 
-            cursor.execute ("SELECT id,isbn,titulo,anyo FROM libros")
+            cursor.execute ("SELECT id,isbn,titulo,anyo,status FROM librowos")
             libros = cursor.fetchall()
 
-            for libros in libros:
-                print(libros)
+            for librowos in libros:
+                print(librowos)
     finally:
         con.close()
 except(pymysql.err.OperationalError,pymysql.err.InternalError) as e:

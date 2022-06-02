@@ -6,5 +6,6 @@ CREATE TABLE IF NOT EXISTS libros(
     isbn VARCHAR(255) NOT NULL,
     titulo VARCHAR(255) NOT NULL,
     anyo SMALLINT NOT NULL,
+    status VARCHAR(100) NOT NULL,
     PRIMARY KEY (id)
 );

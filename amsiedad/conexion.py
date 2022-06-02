@@ -5,8 +5,8 @@ try:
     print('base de datos conectada')
     try:
         with con.cursor() as cursor:
-            consulta = "INSERT INTO libros (isbn,titulo,anyo) VALUES(%s,%s,%s);"
-            cursor.execute(consulta,('','',''))
+            consulta = "INSERT INTO librowos (isbn,titulo,anyo,status) VALUES(%s,%s,%s,%s);"
+            cursor.execute(consulta,('','','',''))
     finally:
         con.close()
 except(pymysql.err.OperationalError,pymysql.err.InternalError) as e:
