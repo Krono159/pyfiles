@@ -1,11 +1,17 @@
+import imp
 import pymysql
 try:
     con = pymysql.connect(host = 'localhost',
     user='root', password='',db='libros')
     try:
         with con.cursor() as cursor:
-            consulta = "INSERT INTO librowos (isbn,titulo,anyo,status) VALUES(%s,%s,%s,%s);"
-            cursor.execute(consulta,('9789875452114','La serpiente y el mar','2005','disponible'))
+            isbna=input('ingrese ISBN del libro: \t')
+            tituloa = input('ingrese titulo del libro: \t')
+            autora = input('ingrese nombre del autor:\t')
+            anyoa = input('ingrese año de publicacion del libro:\t')
+            disponiblea = input('el libro esta disponible o prestado? \t')
+            consulta = "INSERT INTO librowos (isbn,titulo,autor,anyo,status) VALUES(%s,%s,%s,%s,%s);"
+            cursor.execute(consulta,(isbna,tituloa,autora,anyoa,disponiblea))
         con.commit()
     finally:
         con.close
